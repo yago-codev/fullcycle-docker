@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  node:
+    # image: yagodev/fullcycle-node-nginx
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    container_name: nodecontainer
+    networks:
+      - minharede
+
+  nginx:
+    # image: yagodev/fullcycle-nginx-node
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: fullcycle-nginx-node
+    networks:
+      - minharede
+    ports:
+      - "8080:80"
+
+networks:
+  minharede:
+    driver: bridge 
